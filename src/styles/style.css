@@ -1,0 +1,12 @@
+body {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    margin: 0 auto;
+    width: calc(100vw - 80px);
+    transition: all .5s linear;
+}
+
+.hidden {
+    display: none;
+}

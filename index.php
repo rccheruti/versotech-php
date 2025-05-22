@@ -1,34 +1,13 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
 
-require 'connection.php';
+use controller\UserController;
+use controller\ColorController;
 
-$connection = new Connection();
+$userController = new UserController();
+$users = $userController->getUsers();
 
-$users = $connection->query("SELECT * FROM users");
+$colorController = new ColorController();
+$colors = $colorController->getAllColors();
 
-echo "<table border='1'>
-
-    <tr>
-        <th>ID</th>    
-        <th>Nome</th>    
-        <th>Email</th>
-        <th>Ação</th>    
-    </tr>
-";
-
-foreach($users as $user) {
-
-    echo sprintf("<tr>
-                      <td>%s</td>
-                      <td>%s</td>
-                      <td>%s</td>
-                      <td>
-                           <a href='#'>Editar</a>
-                           <a href='#'>Excluir</a>
-                      </td>
-                   </tr>",
-        $user->id, $user->name, $user->email);
-
-}
-
-echo "</table>";
+@include __DIR__ . '/views/index.php';

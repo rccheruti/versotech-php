@@ -1,0 +1,11 @@
+{
+    "name": "roger/prova-php-entrevista-master",
+    "autoload": {
+        "psr-4": {
+            "Roger\\ProvaPhpEntrevistaMaster\\": "src/",
+            "config\\": "config/",
+            "controller\\": "controller/"
+        }
+    },
+    "require": {}
+}
