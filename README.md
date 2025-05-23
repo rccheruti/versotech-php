@@ -1,6 +1,6 @@
 Olá!
 
-Ao clonar o repositório rode o seguinto comando na raiz do projeto:
+Ao clonar o repositório rode o seguinte comando na raiz do projeto:
 ```shell
 composer install
 ```
