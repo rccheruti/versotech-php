@@ -8,6 +8,6 @@ $userController = new UserController();
 $users = $userController->getUsers();
 
 $colorController = new ColorController();
-$colors = $colorController->getAllColors();
+$colors = $colorController->getColors();
 
 @include __DIR__ . '/views/index.php';

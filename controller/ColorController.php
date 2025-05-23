@@ -3,20 +3,41 @@
 namespace controller;
 
 use config\Connection;
-use PDO;
+use model\Color;
+
 class ColorController
 {
-    private PDO $connection;
+    private $color;
 
     public function __construct()
     {
         $connection = new Connection();
-        $this->connection = $connection->getConnection();
+        $db = $connection->getConnection();
+        $this->color = new Color($db);
     }
 
-    public function getAllColors()
+    public function getColors()
     {
-        return $this->connection->query("SELECT * FROM colors");
+        return $this->color->getAll();
     }
 
+    public function edit($id)
+    {
+        return $this->color->getById($id);
+    }
+
+    public function update($id, $nome)
+    {
+        return $this->color->update($id, $nome);
+    }
+
+    public function store($nome)
+    {
+        return $this->color->create($nome);
+    }
+
+    public function delete($id)
+    {
+        return $this->color->delete($id);
+    }
 }

@@ -3,21 +3,41 @@
 namespace controller;
 
 use config\Connection;
-use PDO;
+use model\User;
 
 class UserController
 {
-    private PDO $connection;
+    private $user;
 
     public function __construct()
     {
         $connection = new Connection();
-        $this->connection = $connection->getConnection();
+        $db = $connection->getConnection();
+        $this->user = new User($db);
     }
 
     public function getUsers()
     {
-        return $this->connection->query("SELECT * FROM users");
+        return $this->user->getAll();
     }
 
+    public function edit($id)
+    {
+        return $this->user->getById($id);
+    }
+
+    public function update($id, $nome, $email, $cor)
+    {
+        return $this->user->update($id, $nome, $email, $cor);
+    }
+
+    public function store($nome, $email, $cor)
+    {
+        return $this->user->create($nome, $email, $cor);
+    }
+
+    public function delete($id)
+    {
+        return $this->user->delete($id);
+    }
 }
