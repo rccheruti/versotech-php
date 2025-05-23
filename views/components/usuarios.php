@@ -75,7 +75,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload()">Fechar</button>
             </div>
         </div>
     </div>
