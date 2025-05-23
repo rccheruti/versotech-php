@@ -5,8 +5,11 @@
             "Roger\\ProvaPhpEntrevistaMaster\\": "/",
             "config\\": "config/",
             "controller\\": "controller/",
-            "model\\": "model/"
+            "model\\": "model/",
+            "requests\\": "requests/"
         }
     },
-    "require": {}
+    "require": {
+        "php": "^8.0"
+    }
 }

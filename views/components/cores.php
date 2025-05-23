@@ -27,13 +27,14 @@
                     <div class="row g-3">
                         <div class="col">
                             <label class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" required>
+                            <input type="text" class="form-control" id="nameColor" name="nameColor" required>
                         </div>
                     </div>
                     <div class="mt-3">
                         <button type="submit" class="btn btn-primary">Adicionar</button>
                     </div>
                 </form>
+                <div id="responseMsg" class="mt-3"></div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" data-bs-target="#coresModal" data-bs-toggle="modal">Volta ao inicio</button>

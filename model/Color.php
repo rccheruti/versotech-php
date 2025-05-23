@@ -29,21 +29,21 @@ class Color {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($nome) {
-        $query = "INSERT INTO " . $this->table . " (nome) VALUES (:nome)";
+    public function create($name) {
+        $query = "INSERT INTO " . $this->table . " (name) VALUES (:name)";
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(":nome", $nome);
+        $stmt->bindParam(":name", $name);
 
         return $stmt->execute();
     }
 
-    public function update($id, $nome) {
-        $query = "UPDATE " . $this->table . " SET nome = :nome, WHERE id = :id";
+    public function update($id, $name) {
+        $query = "UPDATE " . $this->table . " SET name = :name, WHERE id = :id";
         $stmt = $this->conn->prepare($query);
 
         $stmt->bindParam(":id", $id);
-        $stmt->bindParam(":nome", $nome);
+        $stmt->bindParam(":name", $name);
 
         return $stmt->execute();
     }

@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-     tabindex="-1">
+    tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -30,19 +30,21 @@
                     <div class="row g-3">
                         <div class="col-md-3">
                             <label class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" required>
+                            <input type="text" class="form-control" id="name" required>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <label class="form-label">Cores</label>
-                            <select class="form-select" aria-label="cores">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="form-select" aria-label="cores" id="colors">
+                                <option selected>Selecione uma cor</option>
+                                <?php
+                                $colors = $colorController->getColors();
+                                foreach ($colors as $color): ?>
+                                    <option value="<?= $color['id'] ?>"><?= $color['name'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
@@ -60,7 +62,7 @@
     </div>
 </div>
 <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
-     tabindex="-1">
+    tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -70,27 +72,27 @@
             <div class="modal-body">
                 <table class="table table-bordered table-striped">
                     <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Cor</th>
-                        <th>Ações</th>
-                    </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Cor</th>
+                            <th>Ações</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($users as $user): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($user['id']) ?></td>
-                            <td><?= htmlspecialchars($user['name']) ?></td>
-                            <td><?= htmlspecialchars($user['email']) ?></td>
-                            <td><?= htmlspecialchars($user['cor']) ?></td>
-                            <td>
-                                <a href="editar.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-warning me-2">Editar</a>
-                                <a href="excluir.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($user['id']) ?></td>
+                                <td><?= htmlspecialchars($user['name']) ?></td>
+                                <td><?= htmlspecialchars($user['email']) ?></td>
+                                <td><?= htmlspecialchars($user['cor']) ?></td>
+                                <td>
+                                    <a href="editar.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-warning me-2">Editar</a>
+                                    <a href="excluir.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

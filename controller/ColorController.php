@@ -26,14 +26,14 @@ class ColorController
         return $this->color->getById($id);
     }
 
-    public function update($id, $nome)
+    public function update($id, $name)
     {
-        return $this->color->update($id, $nome);
+        return $this->color->update($id, $name);
     }
 
-    public function store($nome)
+    public function store($name)
     {
-        return $this->color->create($nome);
+        return $this->color->create($name);
     }
 
     public function delete($id)

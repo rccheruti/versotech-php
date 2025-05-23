@@ -59,4 +59,41 @@ class User {
 
         return $stmt->execute();
     }
+
+    
+    public function getUserColors($userId) {
+        $query = "
+            SELECT c.id, c.name 
+            FROM colors c
+            INNER JOIN user_colors uc ON c.id = uc.color_id
+            WHERE uc.user_id = :user_id
+        ";
+    
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addColorToUser($userId, $colorId) {
+        $query = "INSERT INTO user_colors (user_id, color_id) VALUES (:user_id, :color_id)";
+    
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':color_id', $colorId);
+    
+        return $stmt->execute();
+    }
+
+    public function removeColorFromUser($userId, $colorId) {
+        $query = "DELETE FROM user_colors WHERE user_id = :user_id AND color_id = :color_id";
+    
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':color_id', $colorId);
+    
+        return $stmt->execute();
+    }
+
 }
