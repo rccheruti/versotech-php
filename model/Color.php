@@ -35,15 +35,20 @@ class Color {
 
         $stmt->bindParam(":name", $name);
 
-        return $stmt->execute();
+
+        if ($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
+    
+        return false;
     }
 
     public function update($id, $name) {
-        $query = "UPDATE " . $this->table . " SET name = :name, WHERE id = :id";
+        $query = "UPDATE " . $this->table . " SET name = :name WHERE id = :id ";
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(":id", $id);
-        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         return $stmt->execute();
     }

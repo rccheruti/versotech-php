@@ -1,28 +1,8 @@
 <div class="modal fade" id="usuariosModal" aria-hidden="true" aria-labelledby="usuariosModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Usuários</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Aqui você pode cadastrar ou listar os usuários
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cadastrar
-                </button>
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Listar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-    tabindex="-1">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Cadastro de usuários</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Usuários</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -43,7 +23,7 @@
                                 <?php
                                 $colors = $colorController->getColors();
                                 foreach ($colors as $color): ?>
-                                    <option value="<?= $color['id'] ?>"><?= $color['name'] ?></option>
+                                    <option value="<?= $color['id'] ?>" id="<?= $color['id'] ?>"><?= $color['name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -53,24 +33,8 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#usuariosModal" data-bs-toggle="modal">Voltar ao
-                    inicio
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
-    tabindex="-1">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Listagem de usuários</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
             <div class="modal-body">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="usersTable">
                     <thead class="table-dark">
                         <tr>
                             <th>ID</th>
@@ -84,12 +48,26 @@
                         <?php foreach ($users as $user): ?>
                             <tr>
                                 <td><?= htmlspecialchars($user['id']) ?></td>
-                                <td><?= htmlspecialchars($user['name']) ?></td>
-                                <td><?= htmlspecialchars($user['email']) ?></td>
-                                <td><?= htmlspecialchars($user['cor']) ?></td>
                                 <td>
-                                    <a href="editar.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-warning me-2">Editar</a>
-                                    <a href="excluir.php?id=<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+                                    <span class="user-name"><?= htmlspecialchars($user['name']) ?></span>
+                                    <input type="text" class="form-control form-control-sm user-name-input d-none" value="<?= htmlspecialchars($user['name']) ?>">
+                                </td>
+                                <td>
+                                    <span class="user-email"><?= htmlspecialchars($user['email']) ?></span>
+                                    <input type="email" class="form-control form-control-sm user-email-input d-none" value="<?= htmlspecialchars($user['email']) ?>">
+                                </td>
+                                <td>
+                                    <span class="user-color-name"><?= htmlspecialchars($user['color_name']) ?></span>
+                                    <select class="form-select form-select-sm user-color-select d-none">
+                                        <?php foreach ($colors as $color): ?>
+                                            <option value="<?= htmlspecialchars($color['id']) ?>" <?= $color['id'] == $user['color_id'] ? 'selected' : '' ?>><?= htmlspecialchars($color['name']) ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning btn-edit" data-id="<?= $user['id'] ?>">Editar</button>
+                                    <button class="btn btn-sm btn-success btn-save d-none" data-id="<?= $user['id'] ?>">Salvar</button>
+                                    <button class="btn btn-sm btn-danger btn-delete" data-id="<?= $user['id'] ?>">Excluir</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -97,9 +75,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#usuariosModal" data-bs-toggle="modal">Voltar ao
-                    inicio
-                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
