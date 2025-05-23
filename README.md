@@ -1,3 +1,13 @@
+Olá!
+
+Ao clonar o repositório rode o seguinto comando na raiz do projeto:
+```shell
+composer install
+```
+Foi utilizado o composer para rodar o autoload, para mapear os arquivos do projeto.
+
+<hr>
+
 # Teste de conhecimentos PHP + Banco de dados
 ##### Objetivo
 Criar um Crud simples, totalmente desenvolvido em PHP, sem a utilização de frameworks, onde será possível Criar/Editar/Excluir/Listar usuários. O sistema também deve possuir a possibilidade de vincular/desvincular várias cores ao usuário.

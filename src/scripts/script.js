@@ -1,3 +1,12 @@
+
+const nome = prompt("Qual seu nome?");
+
+if(nome) {
+    document.getElementById('welcomeNameUser').innerText = `${nome}`;
+} else {
+    document.getElementById('welcomeNameUser').innerText = 'Usuário(a)';
+}
+
 $.getScript("/src/scripts/users.js", function () {
     console.warn("users.js loaded");
 });
